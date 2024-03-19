@@ -1,3 +1,5 @@
+![TycoonKitAd](https://github.com/zSkull162/TycoonKit/assets/70001936/8879a608-e16a-4599-8f8a-35af5c9dbafe)
+
 # Welcome to VRChat TycoonKit!
 ### A prefab designed to allow world creators to make Roblox-like tycoons more easily in VRChat.
 ### ---------------------------------------------------------------------------------------------
@@ -15,6 +17,7 @@ When I attempted to use this package in Unity 2019, everything does work, but th
 
 ### Play Polytycoon here:
 Here's the link to my world Poltycoon, in case you want to see what this prefab is capable of.
+
 https://vrchat.com/home/world/wrld_5e16723e-b5c9-4683-9757-557e69805316
 
 ### ---------------------------------------------------------------------------------------------
