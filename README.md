@@ -3,22 +3,15 @@
 # Welcome to VRChat TycoonKit!
 ### A prefab designed to allow world creators to make Roblox-like tycoons more easily in VRChat.
 ### ---------------------------------------------------------------------------------------------
-As the description above suggests, this is a prefab for VRChat which replicates the behaviour and systems found in Roblox Tycoon games. This prefab includes Droppers, Upgraders, Collectors, Buttons, Conveyors, and a highly expandable system for the type of objects that can be collected.
-I also coded each script with UdonSharp, so unfortunately you'll likely need to learn coding if you want to edit any scripts. Sorry graph users. (Udonsharp is also included in the SDK now, so don't worry about installing it separately.)
+As the description above suggests, this is a prefab for VRChat which replicates the behaviour and systems found in Roblox Tycoon games. This prefab includes Droppers, Upgraders, Collectors, Buttons, Conveyors, and a very simple way to create collectable objects. The only required packages for this system are the VRCSDK3 and UdonSharp, but U# comes with the SDK now, so you don't need to install it separately.
 
-This system is the same one found in my own world, Polytycoon! This means that the unlock buttons are fully synced between in-instance players, and late-joiners. While the droppers, upgraders, and currency objects themselves aren't synced, they'll be dropping at about the same time for every player anyways, so you should hardly notice.
+This system is the same one found in [my own world, Polytycoon!](https://vrchat.com/home/world/wrld_5e16723e-b5c9-4683-9757-557e69805316) This means that the unlock buttons are fully synced between in-instance players, and late-joiners. While the droppers, upgraders, and currency objects themselves aren't synced, they'll be dropping at about the same time for every player anyways, so you should hardly notice.
 
 The unitypackage includes Mochie's standard shader, as i used it for the materials the prefabs and example scenes use. If you already have Mochie's shaders installed, the unitypackage won't install a second copy.
 
 ## Important:
 This package was made on <b>Unity 2022.3.6</b>, so if you are trying to use it on <b>Unity 2019.4.31</b>, you will have some minor issues.
 When I attempted to use this package in Unity 2019, everything does work, but there's some collider scaling issues for the prefabs. To fix this, simply go through each prefab, and make sure none of the colliders are massive or super small. Otherwise, this package works fine on Unity 2019.
-### ---------------------------------------------------------------------------------------------
-
-### Play Polytycoon here:
-Here's the link to my world Polytycoon, in case you want to see what this prefab is capable of.
-
-https://vrchat.com/home/world/wrld_5e16723e-b5c9-4683-9757-557e69805316
 
 ### ---------------------------------------------------------------------------------------------
 # Features
