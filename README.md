@@ -14,6 +14,7 @@ When I attempted to use this package in Unity 2019, everything does work, but th
 ### ---------------------------------------------------------------------------------------------
 
 ### Play Polytycoon here:
+Here's the link to my world Poltycoon, in case you want to see what this prefab is capable of.
 https://vrchat.com/home/world/wrld_5e16723e-b5c9-4683-9757-557e69805316
 
 ### ---------------------------------------------------------------------------------------------
