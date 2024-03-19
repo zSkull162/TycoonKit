@@ -16,7 +16,7 @@ When I attempted to use this package in Unity 2019, everything does work, but th
 ### ---------------------------------------------------------------------------------------------
 
 ### Play Polytycoon here:
-Here's the link to my world Poltycoon, in case you want to see what this prefab is capable of.
+Here's the link to my world Polytycoon, in case you want to see what this prefab is capable of.
 
 https://vrchat.com/home/world/wrld_5e16723e-b5c9-4683-9757-557e69805316
 
@@ -24,6 +24,8 @@ https://vrchat.com/home/world/wrld_5e16723e-b5c9-4683-9757-557e69805316
 # Features
 ### 1. Droppers
 Your basic tycoon dropper. Drops any object you select at a rate you choose.
+
+You can also set the Spawn Delay to 0, if you want to disable the automatic spawning. This is mainly done if you want to make a manual dropper.
 
 ![Screenshot 2024-03-18 205424](https://github.com/zSkull162/TycoonKit/assets/70001936/f53af516-8ebf-464f-8a1e-dc11eb9817a7)
 
@@ -62,7 +64,7 @@ It does not matter whether you leave these set in-editor while you upload or tes
 
 
 ### 4. Money Manager
-This is another very imortant part of the tycoon systems. The Money Manager stores a Money value, and will update the selected "Display text" every time the money value changes.
+This is another very important part of the tycoon systems. The Money Manager stores a Money value, and will update the selected "Display text" every time the money value changes.
 
 The Money Manager is also referenced by Collectors and Unlock Buttons as you may have noticed, because an unlock button checks the current Money value of the referenced Money Manager to decide whether or not you can buy something. And a collector references a Money Manager so it can add the value of any collected currency objects to its Money value.
 
@@ -83,7 +85,7 @@ To create a currency object is very simple. Get a primitive like a sphere, cube,
 
 ![Screenshot 2024-03-18 213315](https://github.com/zSkull162/TycoonKit/assets/70001936/8ff5ee95-9b9d-4512-aa04-aa864b0b36b7)
 
-Finally, you add the Currency Tag script. This is the component that stores a Value variable, which is read by Collectors, so they can add the Value to the money from a money manager. You can actually add this Currency Tag script to anything you want, and if it touches the trigger of a Collector, its Value will be added to the referenced money manager's money value.
+Finally, you add the Currency Tag script. This is the component that stores a Value variable, which is read by Collectors, so they can add the Value to the money from a money manager. You can actually add this Currency Tag script to anything you want, and if it touches the trigger of a Collector, its Value will be added to the money value of the money manager referenced by the collector.
 (Note: This value cannot be negative. If it is, it will be reset to 0 when the game starts.)
 
 ![Screenshot 2024-03-18 203452](https://github.com/zSkull162/TycoonKit/assets/70001936/a759f92d-9749-4959-8c18-e7ff72a9813c)
