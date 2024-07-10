@@ -20,7 +20,7 @@ Your basic tycoon dropper. Drops any object you select at a rate you choose.
 
 You can also set the Spawn Delay to 0, if you want to disable the automatic spawning. This is mainly done if you want to make a manual dropper.
 
-![Screenshot 2024-03-18 205424](https://github.com/zSkull162/TycoonKit/assets/70001936/f53af516-8ebf-464f-8a1e-dc11eb9817a7)
+![Screenshot 2024-07-10 182119](https://github.com/zSkull162/TycoonKit/assets/70001936/b0918dc1-ebaf-44f2-8d31-aff3186b439c)
 
 
 ### 2. Upgraders
@@ -28,7 +28,7 @@ The upgraders have 2 options for upgrading, Add and Multiply. If set to add, the
 
 You will also notice there's a particle system slot. It's there so that you can have a particle system play whenever an object is upgraded, for some player feedback. It isn't required however, so you can leave the field blank if you don't want particles to show up.
 
-![Screenshot 2024-03-18 203435](https://github.com/zSkull162/TycoonKit/assets/70001936/495b6d15-423f-4803-96ad-4f84a903574c)
+![Screenshot 2024-07-10 182136](https://github.com/zSkull162/TycoonKit/assets/70001936/cdf71761-78a5-4289-a790-e7e4ea49ab3c)
 
 
 ### 3. Unlock Buttons
@@ -36,7 +36,8 @@ Unlock buttons are the most important part of a tycoon, besides your money. Thes
 
 The main part of the unlock button is the <b>Unlock Name, Cost, Unlocks, and Previous Object</b>. The Unlock Name will display as a title above the cost, and will have a colon automatically added to the end of the string. The Cost is displayed below the Unlock Name, and will have a <b>$</b> automatically added to the beginning of the number.
 
-![Screenshot 2024-03-18 210423](https://github.com/zSkull162/TycoonKit/assets/70001936/030a0221-2026-429e-89ae-7a5ce6a72b7f)
+![Screenshot 2024-07-10 182155](https://github.com/zSkull162/TycoonKit/assets/70001936/d224e298-5d80-4682-b5b8-1fe90d84dc3a) ![Screenshot 2024-07-10 182205](https://github.com/zSkull162/TycoonKit/assets/70001936/e299ff7d-7e2d-49e5-978b-23828f9e65b5)
+
 
 The Sound Effect is an Audiosource field, and it will play when a button is purchased. By default, the sound plays for every player, but there's a toggle to make it only play locally, as you may notice with the "Global Sound" checkbox.
 The Sound Effect is also not required, so leave it blank if you don't want any sound at all.
@@ -67,7 +68,7 @@ There's also a field for Starting Money. This simply adds whatever you input to 
 
 The Display Text field is also not <i>required</i>, but it wouldn't be that fun to play a tycoon where you can't see how much money you have.
 
-![Screenshot 2024-03-18 212949](https://github.com/zSkull162/TycoonKit/assets/70001936/7c40649f-3d60-4dea-94ba-184f24000f80)
+![Screenshot 2024-07-10 182220](https://github.com/zSkull162/TycoonKit/assets/70001936/d20b714b-8973-4545-a1c0-e105658f59da)
 
 
 ### 5. Currency Objects
@@ -81,11 +82,13 @@ To create a currency object is very simple. Get a primitive like a sphere, cube,
 Finally, you add the Currency Tag script. This is the component that stores a Value variable, which is read by Collectors, so they can add the Value to the money from a money manager. You can actually add this Currency Tag script to anything you want, and if it touches the trigger of a Collector, its Value will be added to the money value of the money manager referenced by the collector.
 (Note: This value cannot be negative. If it is, it will be reset to 0 when the game starts.)
 
-![Screenshot 2024-03-18 203452](https://github.com/zSkull162/TycoonKit/assets/70001936/a759f92d-9749-4959-8c18-e7ff72a9813c)
+![Screenshot 2024-07-10 182250](https://github.com/zSkull162/TycoonKit/assets/70001936/af0385f6-9af9-4b88-aba7-0f3b932e5e15)
+
 
 ### ---------------------------------------------------------------------------------------------
 ## That's all for this ReadMe.
 There's more features in the prefab that weren't mentioned fully here of course, like the Object Cleanup script, or Conveyors, but this isn't the end of the documentation. Within the unitypackage, there's 3 more text files with even more information.
+Every variable also has tooltips, so you can hover over something if you need a quick explanation of what it's for.
 
 There's a Credits file, which states where I found help, or certain assets included in the package.
 an Instructions file, which explains what prefabs to drag into your sccene first, and how to set them up.
