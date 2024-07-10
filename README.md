@@ -51,10 +51,10 @@ One very important thing to note, is that; If you want a button to be off by def
 The reasoning for this, is that if you toggle the main part of the button with the script attatched, the script will disable along with the button, and disabled scripts will not run the events that allow the Unlocks to sync for late-joiners.
 This also means if you want a button that unlocks other buttons, you need to add the Container Object to the unlocks, and not the part with the script.
 
-You will also notice the "Editor Options" dropdown at the top of the script. These "Set (name) text" buttons are simply there to let you preview what the button will look like in-game. If you press them, it will update the Unlock Name and Cost text to show whatever you added to the respective fields.
+You will also notice the "Editor Options" dropdown at the top of the script. These "Set text" buttons are simply there to let you preview what the button will look like in-game. If you press them, it will update the Unlock Name and Cost text to show whatever you added to the respective fields.
 It does not matter whether you leave these set in-editor while you upload or test your world, as the Editor Options will <i>only</i> affect the buttons <b>in-editor</b>.
 
-![Screenshot 2024-03-18 212157](https://github.com/zSkull162/TycoonKit/assets/70001936/a4db7834-f234-4944-a06f-8a07d5152f7c)
+![Screenshot 2024-07-10 182629](https://github.com/zSkull162/TycoonKit/assets/70001936/fa02326a-d1db-4b8e-b2ff-c8e065864b3d)
 
 
 ### 4. Money Manager
