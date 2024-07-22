@@ -54,7 +54,7 @@ This also means if you want a button that unlocks other buttons, you need to add
 You will also notice the "Editor Options" dropdown at the top of the script. These "Set text" buttons are simply there to let you preview what the button will look like in-game. If you press them, it will update the Unlock Name and Cost text to show whatever you added to the respective fields.
 The text is automatically set in-game aswell, so don't worry about how the text looks in-editor.
 
-There are also some buttons to "Find Money Manager" and "Find COntainer Object." These do exactly what they say, and find/set the money manager and container object for you. As you can see, there's also a short explanation on the inspector itself.
+There are also some buttons to "Find Money Manager" and "Find Container Object." These do exactly what they say, and find/set the money manager and container object for you. As you can see, there's also a short explanation on the inspector itself.
 These buttons are just for convenience :)
 
 ![Screenshot 2024-07-21 214917](https://github.com/user-attachments/assets/98316569-5782-446f-9770-38aa866fa406) ![Screenshot 2024-07-21 214934](https://github.com/user-attachments/assets/863a7423-9667-4713-a42e-7f6ab84ba158)
