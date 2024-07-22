@@ -11,14 +11,14 @@ The unitypackage includes Mochie's standard shader, as i used it for the materia
 
 ## Important:
 This package was made on <b>Unity 2022.3.6</b>, so if you are trying to use it on <b>Unity 2019.4.31</b>, you will have some minor issues.
-When I attempted to use this package in Unity 2019, everything does work, but there's some collider scaling issues for the prefabs. To fix this, simply go through each prefab, and make sure none of the colliders are massive or super small. Otherwise, this package works fine on Unity 2019.
+When I attempted to use this package in Unity 2019, everything does work, but there's some collider scaling issues for the prefabs. To fix this, simply go through each prefab, and make sure none of the colliders are massive or super small. Otherwise, this package works fine on Unity 2019. This system should also work for Unity 2022.3.22, but I haven't tested that yet.
 
 ### ---------------------------------------------------------------------------------------------
 # Features
 ### 1. Droppers
 Your basic tycoon dropper. Drops any object you select at a rate you choose.
 
-You can also set the Spawn Delay to 0, if you want to disable the automatic spawning. This is mainly done if you want to make a manual dropper.
+You can also set the Spawn Delay to 0 if you want to disable the automatic spawning. This is mainly done if you want to make a manual dropper.
 
 ![Screenshot 2024-07-10 182119](https://github.com/zSkull162/TycoonKit/assets/70001936/b0918dc1-ebaf-44f2-8d31-aff3186b439c)
 
@@ -44,15 +44,15 @@ The Sound Effect is also not required, so leave it blank if you don't want any s
 
 The Unlocks is a Gameobject array, and these objects you add to the array will be what gets <b>enabled</b> when the button is purchased. These unlocks will be synced for in-instance players and late-joiners.
 
-The Is Upgrade option shows you a Previous Object variable. THis is also a Gameobject, and it gets <b>disabled</b> when the button is purchased. The main use for this is if you want to upgrade something. For example:
-You have a dropper that's level 1, and you have a level 2 version set up that drops better currency. For an upgrade button, you would add the dropper level 2 to the unlocks, enable Is Upgrade, and put the dropper level 1 in the Previous Object. This way, the new dropper will show up, and the old one will disappear.
+The "Is Upgrade" option shows you a Previous Object variable. This is also a Gameobject, and it gets <b>disabled</b> when the button is purchased. The main use for this is if you want to upgrade something. For example:
+You have a dropper that's level 1, and you have a level 2 version set up that drops better currency. For an upgrade button, you would add the dropper level 2 to the unlocks, enable "Is Upgrade", and put the dropper level 1 in the Previous Object. This way, the new dropper will show up, and the old one will disappear.
 
 One very important thing to note, is that; If you want a button to be off by default, you <b>must</b> disable the "Container Object" part of the button, and <b>not</b> the part with the Unlock Button script attatched.
 The reasoning for this, is that if you toggle the main part of the button with the script attatched, the script will disable along with the button, and disabled scripts cannot sync any data.
 This also means if you want a button that unlocks other buttons, you need to add the Container Object to the unlocks, and not the part with the script.
 
 You will also notice the "Editor Options" dropdown at the top of the script. These "Set text" buttons are simply there to let you preview what the button will look like in-game. If you press them, it will update the Unlock Name and Cost text to show whatever you added to the respective fields.
-The text is automatically set in-game aswell, so don't worry about how the text looks in-editor.
+The text is automatically set in-game aswell, so don't worry about how it looks in-editor.
 
 There are also some buttons to "Find Money Manager" and "Find Container Object." These do exactly what they say, and find/set the money manager and container object for you. As you can see, there's also a short explanation on the inspector itself.
 These buttons are just for convenience :)
@@ -63,7 +63,7 @@ These buttons are just for convenience :)
 ### 4. Money Manager
 This is another very important part of the tycoon systems. The Money Manager stores a Money value, and will update the selected "Display text" every time the money value changes.
 
-The Money Manager is also referenced by Collectors and Unlock Buttons as you may have noticed, because an unlock button checks the current Money value of the referenced Money Manager to decide whether or not you can buy something. And a collector references a Money Manager so it can add the value of any collected currency objects to its Money value.
+The Money Manager is also referenced by Collectors and Unlock Buttons as you may have noticed, because an unlock button checks the current Money value of the referenced Money Manager to decide whether or not you can buy something, and a collector references a Money Manager so it can add the value of collected currency objects to the Money value.
 
 One of the cool things about this system, is that if you want multilpe tycoons in one world, you can just duplicate the Money Manager and have different buttons reference different Money Managers! The only thing you may want to do, is modify the Unlock Buttons to have some sort of Tycoon Ownership system. Although that may be a bit difficult depending on the user's experience with coding and Udon, so it's not necessary, but know that anyone can buy any button if there isn't an ownership system.
 
@@ -94,7 +94,7 @@ There's more features in the prefab that weren't mentioned fully here of course,
 Every variable also has tooltips, so you can hover over something if you need a quick explanation of what it's for.
 
 There's a Credits file, which states where I found help, or certain assets included in the package.
-an Instructions file, which explains what prefabs to drag into your sccene first, and how to set them up.
+an Instructions file, which explains what prefabs to drag into your scene first, and how to set them up.
 and a Script Explanations file, which explains exactly what each script does, and what you could use it for.
 
 I hope to see more fun tycoons on VRChat soon! And I hope it's super easy to use my prefab in your world. If you need help with something, you can message my discord at: <b>skull_z162</b>
