@@ -1,0 +1,114 @@
+------ zSkull162 TycoonKit Script Explanations ------
+I recommend opening this up in a basic text editor. Might make it easier to read
+
+Every script/system is also synced between players and for late-joiners, just like it is in my Polytycoon world. Which means the money value from money managers will update for everyone, and buttons will be purchased for everyone. The only exception is the dropped currency objects themselves, as instantiated (duplicated) objects cannot be synced. This isn't much of an issue though, as the droppers will drop at roughly the same time for everyone.
+
+In case you need help, message my discord: skull_z162
+
+
+--- TextBillboard Script ---
+
+This one simply makes a UI Canvas face the player's camera. Re-creates the effect the floating text in roblox has :)
+
+
+--- Money Manager Script ---
+
+This is an extremely important part of the tycoon system. The money manager stores the current money value, and will also update the selected "Display text" text to show the money value in-game. The money value is also read and referenced by collectors and unlock buttons, so they can make sure you have enough money to buy things, or add the right amount to what you currently have.
+
+While the Display Text isn't required, it'd be pretty terrible to play a tycoon where you don't know how much money you have :p
+
+The "Starting Money" is how much money you want the players to receive at the beginning of the game. I would imagine you want this to be zero 99% of the time, but it's good to have options. If you know udon well enough, you could make it so certain people get a boost of cash at the start based on their display name if you wanted.
+
+With the way the money manager works, if you wanted a world with multiple tycoons, you could duplicate the money manager and have different buttons reference different money managers. All that would need to be manually created is a tycoon ownership system, so only the tycoon owner can buy that specific tycoon's buttons.
+
+
+--- Money Giver Script ---
+
+A pretty simple script, that looks a little more complex than it is. When a player enters the trigger, it will add the Win Amount to the selected Money Manager's money value, and then respawn/teleport the player.
+
+The Sound Effect is an audiosource that will play when a player enters the trigger, and it will be global by default, but there's a checkbox to change that. It isn't required, so leave it blank if you don't want a sound effect to play.
+
+The Teleport Position is a Transform, and it's where the player will teleport to after they hit the trigger. You can leave it blank however, in which case the player will repsawn instead of teleporting.
+
+The Display Text is a text component which will display the Win Amount. This isn't required either.
+
+The Win Amount is self-explanatory, but it's how much money is added to the Money Manager's money value when a player enters the trigger.
+
+The Global Sound option, as explained earlier, will make the Sound Effect play either globally, or locally. It does nothing if no sound effect is selected.
+
+The Editor Options are much alike the Unlock Button's editor options, which are explained later. They set the Display Text to show what it would look like in-game, so you can preview it in-editor. If you leave the text set while playtesting or uploading the world, it won't affect anything in any way. It simply allows you to preview the text in-editor.
+
+
+--- Dropper Script ---
+
+The dropper script will spawn the selected "Object Instance" automatically, based on the "Spawn Delay," which is in seconds.
+
+You can also set the Spawn Delay to zero if you want to disable automatic spawning. This is mainly used for the click dropper.
+
+
+--- Collector Script ---
+
+The collector script, when an object enters its trigger, will check if it has a "Currency Tag" udon behavior. If it does, it will check the Currency Tag's value, and add that to the current money value from the money manager.
+
+Since it only checks whether or not an object has a Currency Tag, this means any object can be collected as currency as long as it has a Currency Tag, even pickups. Use it wisely :)
+
+
+--- Upgrader Script ---
+
+The upgrader script, similar to the collector, when an object enters the trigger will check if it has a currency tag. If it does, it will read the value of the currency tag and add or multiply it, based on your selection.
+
+If set to Add, it will add the Upgrade Amount to the currency tag's value.
+
+If set to Multiply, it will multiply the currency tag's value by the upgrade amount.
+
+The upgrader also has the ability to play a particle system every time an object is upgraded. The "Upgrade Particles" field is not required though, so you can remove the preset particle system if you want.
+
+
+--- Currency tag Script ---
+
+This is a simple one. It stores the value you put in the "Value" field, for the object you add it to. This Value is read by collectors, so they can it to your money.
+
+The currency objects are done this way, with currency tags, to specifically allow for upgraders and a more expandable system of currency objects.
+
+
+--- Unlock Button Script ---
+
+The unlock button script will, when a player enters the trigger, check whether you have money equal to or greater than the "Cost" or not. If you do, it will play the "Sound Effect," enable the "Unlocks" gameobjects, and if Is Upgrade is on, disable the "Previous Object" gameobject, and disable the visuals and trigger last.
+
+The Sound Effect and Previous Object fields are not required, so it will work if you don't add anything there. Refer to the Tycoon Example scene to see how the Previous Object field can be used.
+
+Up at the top, you will see "Editor Options." The editor options include "Set Text," "Reset Text," "Find Money Manager," and "Find Container Object."
+The Set Text and Reset Text buttons simply set the Display's "Title" and "Text" to be the "Unlock Name" and "Cost" in-editor. The text automatically gets set in-game, so don't worry how the text looks in-editor.
+
+The Find Money Manager button searches for any objects in your scene named exactly "MoneyManager", including the capitalization and no space. If that object is found and it has a MoneyManager script attached, it will automatically set the unlock button's Money Manager to the found object.
+The Find Container Object searches for the first child of the object with the UnlockButton script. The default button prefab is a good example of how an unlock button should be set up hierarchy-wise.
+
+
+--- Conveyor Script ---
+
+The conveyor script will apply the "Force" to any objects within the trigger, as long as the object's name contains whatever you put in the "Object Name" field.
+
+This works by global coordinates, which means the direction the Force pushes is based off the orientation of the gimbal in the top right of your viewport.
+
+Either test different values, or refer to the Conveyor prefab and Tycoon Example scene for good Force amounts.
+
+
+--- Object Cleanup Script ---
+
+The object cleanup script will delete any objects that enter its trigger, as long as the object's name contains whatever you put in the "Obj Name" field.
+
+No money will be gained when the objects are destroyed, so this should mainly be put on the floors of your tycoon to prevent objects from falling off the conveyor and staying forever.
+
+And if you look at the Essentials prefab "ObjectCleaner" object, you can see it's used as a floor under the map, to catch anything that may fall off the world. This is done because the objects will not respawn or delete themselves if they fall off the world.
+
+--- Trigger Enter Relay Script ---
+
+The trigger enter relay script is very simple. It sends an event by the name of "Event Name" to the "Script" when a player enters the attached collider, which should be set to is Trigger.
+
+The Unlock Buttons don't check this themselves, because the trigger has to be disabled separately from the Unlock Button script so it can still sync data after it has been bought. And this is used on the Money Giver prefab just for simplicity.
+
+--- Interaction Relay Script ---
+
+This is just like the trigger enter relay script, except it detects when the player clicks the attached collider instead of walks into it.
+
+This was created so you can make an unlock button that players have to click instead of walk on, just to give more freedom with this system.
