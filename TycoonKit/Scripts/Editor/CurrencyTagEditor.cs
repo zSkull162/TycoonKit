@@ -18,13 +18,10 @@ public class CurrencyTagEditor : Editor
     public override void OnInspectorGUI()
     {
         GUIStyle helpBox = new GUIStyle(EditorStyles.helpBox);
-        GUIStyle richTextCentered = new GUIStyle(GUI.skin.label);
-        richTextCentered.richText = true;
-        richTextCentered.alignment = TextAnchor.UpperCenter;
 
         serializedObject.Update();
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col4)}>----------------- Currency Tag -----------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col3, "Currency Tag", true);
         EditorGUILayout.Space(1);
 
         EditorGUILayout.BeginVertical(helpBox);

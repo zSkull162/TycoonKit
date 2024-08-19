@@ -24,6 +24,9 @@ namespace zSkull162.TycoonKit
         [SerializeField] private float winAmount;
         [Tooltip("If true, the Sound Effect will play for all players\n(Only if a Sound Effect is selected)")]
         [SerializeField] private bool globalSound = true;
+
+        // Bool for the inspector
+        public bool editorOptions;
         #endregion
         private VRCPlayerApi localPlayer;
 
@@ -91,7 +94,6 @@ namespace zSkull162.TycoonKit
         ///////////////////// This allows the custom inspector to access these private variables
         public MoneyManager MoneyManager
         {
-            set { moneyManager = value; }
             get { return moneyManager; }
         }
         public float WinAmount

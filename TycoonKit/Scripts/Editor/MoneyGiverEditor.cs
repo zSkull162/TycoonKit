@@ -13,7 +13,6 @@ public class MoneyGiverEditor : Editor
     SerializedProperty displayText;
     SerializedProperty winAmount;
     SerializedProperty globalSound;
-    bool editorGroup;
 
     private void OnEnable()
     {
@@ -33,27 +32,26 @@ public class MoneyGiverEditor : Editor
 
         GUIStyle helpBox = new GUIStyle(EditorStyles.helpBox);
         GUIStyle buttonLabel = new GUIStyle(GUI.skin.button);
-        GUIStyle richText = new GUIStyle(GUI.skin.label);
-        GUIStyle richTextCentered = new GUIStyle(GUI.skin.label);
+        GUIStyle description = new GUIStyle(GUI.skin.label);
 
         GUIStyle foldoutStyle = EditorStyles.foldout;
         FontStyle previousStyle = foldoutStyle.fontStyle;
         foldoutStyle.fontStyle = FontStyle.Bold;
 
-        richText.richText = true;
-        richTextCentered.richText = true;
+        description.richText = true;
+        description.wordWrap = true;
         buttonLabel.richText = true;
-        richTextCentered.alignment = TextAnchor.UpperCenter;
 
         serializedObject.Update();
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col1)}>-------------------- Editor --------------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col1, "Editor", true);
         EditorGUILayout.Space(1);
         EditorGUILayout.BeginVertical(helpBox);
-        editorGroup = GUILayout.Toggle(editorGroup, " Editor options", foldoutStyle);
-        if (editorGroup)
+        _script.editorOptions = GUILayout.Toggle(_script.editorOptions, " Editor options", foldoutStyle);
+        if (_script.editorOptions)
         {
-            EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col4)}>Text</color></b></size>", richText);
+            EditorGUILayout.BeginVertical(helpBox);
+            InspectorUtils.SectionLabel(ThemeColor.Col4, "Text");
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Set Text"))
             {
@@ -65,11 +63,12 @@ public class MoneyGiverEditor : Editor
                 _script.DisplayText.text = "Win: $winAmount";
             }
             EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
             EditorGUILayout.Space(2);
 
-            EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col5)}>Objects</color></b></size>", richText);
-            EditorGUILayout.LabelField($"<size=11>This button assumes your money manager is named exactly \"MoneyManager\"</size>", richText);
-            EditorGUILayout.LabelField($"<size=11>(capitalization and no space)</size>", richText);
+            EditorGUILayout.BeginVertical(helpBox);
+            InspectorUtils.SectionLabel(ThemeColor.Col5, "Objects");
+            EditorGUILayout.LabelField($"<size=11>This button assumes your money manager is named exactly \"MoneyManager\" (capitalization and no space)</size>", description);
             EditorGUILayout.Space(1);
             if (_script.MoneyManager == null)
             {
@@ -78,34 +77,37 @@ public class MoneyGiverEditor : Editor
                     GameObject obj = InspectorUtils.FindObjectByName("MoneyManager");
                     if (obj == null) { Debug.Log($"<color=red>No object found</color>"); return; }
 
-                    _script.MoneyManager = obj.GetComponent<MoneyManager>();
+                    moneyManager.objectReferenceValue = obj.GetComponent<MoneyManager>();
                 }
             }
             else
             {
                 EditorGUILayout.LabelField("<color=grey>Find Money Manager</color>", buttonLabel);
             }
+            EditorGUILayout.EndVertical();
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space(5);
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col2)}>----------------- Money Giver -----------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col2, "Money Giver", true);
         EditorGUILayout.Space(1);
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col2)}>System</color></b></size>", richText);
+        InspectorUtils.SectionLabel(ThemeColor.Col2, "System");
+        EditorGUILayout.BeginVertical(helpBox);
         EditorGUILayout.PropertyField(moneyManager);
         EditorGUILayout.PropertyField(soundEffect);
         EditorGUILayout.PropertyField(displayText);
-        EditorGUILayout.Space(2);
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space(4);
 
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col3)}>Main</color></b></size>", richText);
+        InspectorUtils.SectionLabel(ThemeColor.Col3, "Main");
+        EditorGUILayout.BeginVertical(helpBox);
         EditorGUILayout.PropertyField(teleportPos);
         EditorGUILayout.PropertyField(winAmount);
         EditorGUILayout.PropertyField(globalSound);
-        EditorGUILayout.Space(2);
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
 
         serializedObject.ApplyModifiedProperties();

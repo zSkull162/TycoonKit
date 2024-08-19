@@ -1,4 +1,5 @@
 #if UNITY_EDITOR && !COMPILER_UDONSHARP
+using BestHTTP.SecureProtocol.Org.BouncyCastle.Crypto.Generators;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,67 +8,82 @@ using zSkull162.TycoonKit;
 [CustomEditor(typeof(UnlockButton)), CanEditMultipleObjects]
 public class UnlockButtonEditor : Editor
 {
+    string originalName;
     #region Get Serialized Properties
     SerializedProperty moneyManager;
-    SerializedProperty soundEffect;
     SerializedProperty containerObject;
     SerializedProperty titleText;
     SerializedProperty costText;
     SerializedProperty unlockName;
     SerializedProperty cost;
-    SerializedProperty globalSound;
     SerializedProperty unlocks;
     SerializedProperty previousObject;
-    bool editorGroup, upgradeGroup;
+    SerializedProperty audioSource;
+    SerializedProperty buySound;
+    SerializedProperty errorSound;
+    SerializedProperty isBuySoundGlobal;
+    SerializedProperty isErrorSoundGlobal;
+    SerializedProperty useBuySound;
+    SerializedProperty useErrorSound;
+    SerializedProperty isUpgrade;
 
     private void OnEnable()
     {
         moneyManager = serializedObject.FindProperty("moneyManager");
-        soundEffect = serializedObject.FindProperty("soundEffect");
+        audioSource = serializedObject.FindProperty("audioSource");
         containerObject = serializedObject.FindProperty("containerObject");
         titleText = serializedObject.FindProperty("titleText");
         costText = serializedObject.FindProperty("costText");
         unlockName = serializedObject.FindProperty("unlockName");
         cost = serializedObject.FindProperty("cost");
-        globalSound = serializedObject.FindProperty("globalSound");
         unlocks = serializedObject.FindProperty("unlocks");
         previousObject = serializedObject.FindProperty("previousObject");
+        buySound = serializedObject.FindProperty("buySound");
+        errorSound = serializedObject.FindProperty("errorSound");
+        isBuySoundGlobal = serializedObject.FindProperty("isBuySoundGlobal");
+        isErrorSoundGlobal = serializedObject.FindProperty("isErrorSoundGlobal");
+        useBuySound = serializedObject.FindProperty("useBuySound");
+        useErrorSound = serializedObject.FindProperty("useErrorSound");
+        isUpgrade = serializedObject.FindProperty("isUpgrade");
+        originalName = target.name;
     }
     #endregion
 
     public override void OnInspectorGUI()
     {
         UnlockButton _script = (UnlockButton)target;
-        if (_script == null) { return; }
+        if (_script == null) return;
 
         GUIStyle helpBox = new GUIStyle(EditorStyles.helpBox);
         GUIStyle buttonLabel = new GUIStyle(GUI.skin.button);
-        GUIStyle richText = new GUIStyle(GUI.skin.label);
-        GUIStyle richTextCentered = new GUIStyle(GUI.skin.label);
+        GUIStyle description = new GUIStyle(GUI.skin.label);
+        description.richText = true;
+        description.wordWrap = true;
+        GUIStyle textField = new GUIStyle(EditorStyles.textField);
+        textField.richText = true;
 
         GUIStyle foldoutStyle = EditorStyles.foldout;
-        FontStyle previousStyle = foldoutStyle.fontStyle;
         foldoutStyle.fontStyle = FontStyle.Bold;
         GUIStyle buttonStyle = EditorStyles.radioButton;
-        FontStyle previousStyle1 = buttonStyle.fontStyle;
+        buttonStyle.fontStyle = FontStyle.Bold;
+        GUIStyle checkbox = EditorStyles.toggle;
         buttonStyle.fontStyle = FontStyle.Bold;
 
-        richText.richText = true;
-        richTextCentered.richText = true;
         buttonLabel.richText = true;
         buttonLabel.stretchWidth = true;
-        richTextCentered.alignment = TextAnchor.UpperCenter;
 
         serializedObject.Update();
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col1)}>-------------------- Editor --------------------</color></b></size>", richTextCentered);
+        #region Editor Options
+        InspectorUtils.TitleLabel(ThemeColor.Col1, "Editor", true);
         EditorGUILayout.Space(1);
         EditorGUILayout.BeginVertical(helpBox);
-        editorGroup = GUILayout.Toggle(editorGroup, " Editor options", foldoutStyle);
-        if (editorGroup)
+        _script.editorOptions = GUILayout.Toggle(_script.editorOptions, " Editor options", foldoutStyle);
+        if (_script.editorOptions)
         {
             EditorGUILayout.Space(2);
-            EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col4)}>Text</color></b></size>", richText);
+            EditorGUILayout.BeginVertical(helpBox);
+            InspectorUtils.SectionLabel(ThemeColor.Col3, "Text");
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Set Text"))
             {
@@ -81,14 +97,16 @@ public class UnlockButtonEditor : Editor
                 _script.CostText.text = "$Cost";
             }
             EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
             EditorGUILayout.Space(2);
 
-            EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col5)}>Objects</color></b></size>", richText);
-            EditorGUILayout.LabelField($"<size=11>These buttons assume your money manager is named exactly \"MoneyManager\"</size>", richText);
-            EditorGUILayout.LabelField($"<size=11>(capitalization and no space), and that the Container Object is the <i>first</i> child of</size>", richText);
-            EditorGUILayout.LabelField($"<size=11>the object with this script.</size>", richText);
+            #region Find Objects
+            EditorGUILayout.BeginVertical(helpBox);
+            InspectorUtils.SectionLabel(ThemeColor.Col4, "Objects");
+            EditorGUILayout.LabelField($"<size=11>These buttons assume your money manager is named exactly \"MoneyManager\", your audio source is named exactly \"ButtonAudio\", (capitalization and no space), and that the Container Object is the <i>first</i> child of the object with this script.</size>", description);
             EditorGUILayout.Space(1);
             EditorGUILayout.BeginHorizontal();
+            float maxWidth = EditorGUIUtility.currentViewWidth / 3.33f;
             if (_script.MoneyManager == null)
             {
                 if (GUILayout.Button("Find Money Manager"))
@@ -96,12 +114,12 @@ public class UnlockButtonEditor : Editor
                     GameObject obj = InspectorUtils.FindObjectByName("MoneyManager");
                     if (obj == null) { Debug.Log($"<color=red>No object found</color>"); return; }
 
-                    _script.MoneyManager = obj.GetComponent<MoneyManager>();
+                    moneyManager.objectReferenceValue = obj.GetComponent<MoneyManager>();
                 }
             }
             else
             {
-                EditorGUILayout.LabelField("<color=grey>Find Money Manager</color>", buttonLabel);
+                EditorGUILayout.LabelField("<color=grey>Find Money Manager</color>", buttonLabel, GUILayout.MaxWidth(maxWidth));
             }
 
             if (_script.ContainerObject == null)
@@ -112,68 +130,167 @@ public class UnlockButtonEditor : Editor
                     if (tsfm == null) { Debug.Log($"<color=red>No child object found</color>"); return; }
                     else Debug.Log($"<color=lime><b>Returning {tsfm}</b></color>");
 
-                    _script.ContainerObject = tsfm.gameObject;
+                    containerObject.objectReferenceValue = tsfm.gameObject;
                 }
             }
             else
             {
-                EditorGUILayout.LabelField("<color=grey>Find Container Object</color>", buttonLabel);
+                EditorGUILayout.LabelField("<color=grey>Find Container Object</color>", buttonLabel, GUILayout.MaxWidth(maxWidth));
+            }
+
+            if (_script.AudioSource == null)
+            {
+                if (GUILayout.Button("Find Audio Source"))
+                {
+                    GameObject obj = InspectorUtils.FindObjectByName("ButtonAudio");
+                    if (obj == null) { Debug.Log($"<color=red>No object found</color>"); return; }
+
+                    audioSource.objectReferenceValue = obj.GetComponent<AudioSource>();
+                }
+            }
+            else
+            {
+                EditorGUILayout.LabelField("<color=grey>Find Audio Source</color>", buttonLabel, GUILayout.MaxWidth(maxWidth));
             }
             EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space(3);
+            EditorGUILayout.LabelField($"<size=11>Toggles the container object. Purely for the slight convenience. <color=grey><i>This button also assumes the Container Object is the first child of the object with this script.</i></color></size>", description);
+            EditorGUILayout.Space(1);
+            EditorGUILayout.BeginHorizontal();
+
+            Transform containerObj = _script.transform.GetChild(0);
+            bool isActive = containerObj.gameObject.activeSelf;
+            if (GUILayout.Button("Toggle container object", GUILayout.MaxWidth(maxWidth * 1.5f)))
+            {
+                containerObj.gameObject.SetActive(!isActive);
+            }
+
+            if (isActive) {
+                EditorGUILayout.LabelField("Container object is: <color=lime><i>Enabled</i></color>", textField, GUILayout.MaxWidth(maxWidth * 1.5f));
+            }
+            else {
+                EditorGUILayout.LabelField("Container object is: <color=red><i>Disabled</i></color>", textField, GUILayout.MaxWidth(maxWidth * 1.5f));
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+            #endregion
+            EditorGUILayout.Space(2);
+
+            EditorGUILayout.BeginVertical(helpBox);
+            InspectorUtils.SectionLabel(ThemeColor.Col5, "Button Name");
+            EditorGUILayout.LabelField($"<size=11>This will rename the object with this script in the hierarchy to be like: \"(UnlockName) Unlock\"</size>", description);
+            EditorGUILayout.Space(1);
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Rename button"))
+            {
+                RenameButton($"{_script.UnlockName} Unlock");
+            }
+            if (GUILayout.Button("Reset button name"))
+            {
+                Undo.RecordObject(_script.gameObject, "Reset name");
+                _script.gameObject.name = originalName;
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
         }
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space(5);
+        #endregion
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col2)}>--------------- Unlock Button ---------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col2, "Unlock Button", true);
         EditorGUILayout.Space(1);
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col2)}>System</color></b></size>", richText);
+        InspectorUtils.SectionLabel(ThemeColor.Col2, "System");
+        EditorGUILayout.BeginVertical(helpBox);
         EditorGUILayout.PropertyField(moneyManager);
         EditorGUILayout.PropertyField(containerObject);
-        EditorGUILayout.PropertyField(soundEffect);
         EditorGUILayout.PropertyField(titleText);
         EditorGUILayout.PropertyField(costText);
-        EditorGUILayout.Space(2);
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space(4);
 
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col3)}>Main</color></b></size>", richText);
+        InspectorUtils.SectionLabel(ThemeColor.Col3, "Main");
+        EditorGUILayout.BeginVertical(helpBox);
         EditorGUILayout.PropertyField(unlockName);
         EditorGUILayout.PropertyField(cost);
-        EditorGUILayout.PropertyField(globalSound);
-        EditorGUILayout.Space(2);
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space(4);
 
+        #region Audio
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col4)}>Unlocks</color></b></size>", richText);
+        InspectorUtils.SectionLabel(ThemeColor.Col4, "Audio");
+        EditorGUILayout.BeginVertical(helpBox);
+        EditorGUILayout.PropertyField(audioSource);
+        EditorGUILayout.Space(6);
+        EditorGUILayout.BeginVertical(helpBox);
+        _script.useBuySound = GUILayout.Toggle(_script.useBuySound, "Use Buy Sound", checkbox);
+        if (_script.useBuySound)
+        {
+            useBuySound.boolValue = true;
+            EditorGUILayout.PropertyField(buySound);
+            EditorGUILayout.PropertyField(isBuySoundGlobal);
+        }
+        else useBuySound.boolValue = false;
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.BeginVertical(helpBox);
+        _script.useErrorSound = GUILayout.Toggle(_script.useErrorSound, "Use Error Sound", checkbox);
+        if (_script.useErrorSound)
+        {
+            useErrorSound.boolValue = true;
+            EditorGUILayout.PropertyField(errorSound);
+            EditorGUILayout.PropertyField(isErrorSoundGlobal);
+        }
+        else useErrorSound.boolValue = false;
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.EndVertical();
+        #endregion
+
+        EditorGUILayout.Space(4);
+
+        EditorGUILayout.BeginVertical(helpBox);
+        InspectorUtils.SectionLabel(ThemeColor.Col5, "Unlocks");
+        EditorGUILayout.BeginVertical(helpBox);
         EditorGUILayout.PropertyField(unlocks);
         EditorGUILayout.Space(2);
 
         EditorGUILayout.BeginVertical(helpBox);
-        upgradeGroup = GUILayout.Toggle(upgradeGroup, "  Is Upgrade", buttonStyle);
-        if (_script.PreviousObject != null)
+        _script.isUpgrade = GUILayout.Toggle(_script.isUpgrade, "  Is Upgrade", buttonStyle);
+        if (_script.isUpgrade)
         {
-            upgradeGroup = true;
-            if (upgradeGroup)
-            {
-                EditorGUILayout.PropertyField(previousObject);
-            }
+            isUpgrade.boolValue = true;
+            EditorGUILayout.PropertyField(previousObject);
         }
-        else
-        {
-            if (upgradeGroup)
-            {
-                EditorGUILayout.PropertyField(previousObject);
-            }
-        }
+        else isUpgrade.boolValue = false;
         EditorGUILayout.EndVertical();
-
         EditorGUILayout.EndVertical();
-        EditorGUILayout.Space(4);
+        EditorGUILayout.EndVertical();
 
         serializedObject.ApplyModifiedProperties();
+
+        void RenameButton(string name)
+        {
+            int count = 0;
+
+            Transform containerObj = _script.transform.GetChild(0);
+            GameObject[] objs = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+            foreach (GameObject obj in objs)
+            {
+                if (obj.name.Contains(name) && obj != _script.gameObject)
+                {
+                    count += 1;
+                } 
+            }
+
+            if (count <= 0) { _script.gameObject.name = $"{_script.UnlockName} Unlock"; }
+            else { _script.gameObject.name = $"{_script.UnlockName} Unlock ({count})"; }
+
+            containerObj.gameObject.name = _script.gameObject.name + " Container";
+        }
     }
 }
 #endif

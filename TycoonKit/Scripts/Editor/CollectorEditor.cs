@@ -23,16 +23,14 @@ public class CollectorEditor : Editor
 
         GUIStyle helpBox = new GUIStyle(EditorStyles.helpBox);
         GUIStyle buttonLabel = new GUIStyle(GUI.skin.button);
-        GUIStyle richText = new GUIStyle(GUI.skin.label);
-        GUIStyle richTextCentered = new GUIStyle(GUI.skin.label);
         buttonLabel.richText = true;
-        richText.richText = true;
-        richTextCentered.richText = true;
-        richTextCentered.alignment = TextAnchor.UpperCenter;
+        GUIStyle description = new GUIStyle(GUI.skin.label);
+        description.richText = true;
+        description.wordWrap = true;
 
         serializedObject.Update();
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col2)}>----------------- Collector -----------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col2, "Collector", true);
         EditorGUILayout.Space(1);
 
         EditorGUILayout.BeginVertical(helpBox);
@@ -43,9 +41,9 @@ public class CollectorEditor : Editor
 
         EditorGUILayout.Space(2);
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col1)}>Editor</color></b></size>", richText);
-        EditorGUILayout.LabelField($"<size=11>This button assumes your money manager is named exactly \"MoneyManager\"</size>", richText);
-        EditorGUILayout.LabelField($"<size=11>(capitalization and no space)</size>", richText);
+        InspectorUtils.SectionLabel(ThemeColor.Col1, "Editor");
+        EditorGUILayout.BeginVertical(helpBox);
+        EditorGUILayout.LabelField($"<size=11>This button assumes your money manager is named exactly \"MoneyManager\" (capitalization and no space)</size>", description);
         EditorGUILayout.Space(1);
         if (_script.MoneyManager == null)
         {
@@ -54,13 +52,14 @@ public class CollectorEditor : Editor
                 GameObject obj = InspectorUtils.FindObjectByName("MoneyManager");
                 if (obj == null) { Debug.Log($"<color=red>No object found</color>"); return; }
 
-                _script.MoneyManager = obj.GetComponent<MoneyManager>();
+                moneyManager.objectReferenceValue = obj.GetComponent<MoneyManager>();
             }
         }
         else
         {
             EditorGUILayout.LabelField("<color=grey>Find Money Manager</color>", buttonLabel);
         }
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
 
         serializedObject.ApplyModifiedProperties();

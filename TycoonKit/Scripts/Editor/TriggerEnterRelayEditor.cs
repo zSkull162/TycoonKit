@@ -20,23 +20,22 @@ public class TriggerEnterRelayEditor : Editor
     public override void OnInspectorGUI()
     {
         GUIStyle helpBox = new GUIStyle(EditorStyles.helpBox);
-        GUIStyle richText = new GUIStyle(GUI.skin.label);
-        GUIStyle richTextCentered = new GUIStyle(GUI.skin.label);
-        richText.richText = true;
-        richTextCentered.richText = true;
-        richTextCentered.alignment = TextAnchor.UpperCenter;
+        GUIStyle description = new GUIStyle(GUI.skin.label);
+        description.richText = true;
+        description.wordWrap = true;
 
         serializedObject.Update();
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col3)}>-------------- Trigger Enter Relay --------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col3, "Trigger Enter Relay", true);
         EditorGUILayout.Space(1);
 
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=11><color={InspectorUtils.Color(ThemeColor.Col4)}>Sends an event to the script when a player enters this trigger.</color></size>", richText);
+        EditorGUILayout.LabelField($"<size=11><color={InspectorUtils.Color(ThemeColor.Col4)}>Sends an event to the script when a player enters this trigger.</color></size>", description);
         EditorGUILayout.Space(1);
+        EditorGUILayout.BeginVertical(helpBox);
         EditorGUILayout.PropertyField(script);
         EditorGUILayout.PropertyField(eventName);
-        EditorGUILayout.Space(2);
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
 
         serializedObject.ApplyModifiedProperties();

@@ -24,30 +24,27 @@ public class UpgraderEditor : Editor
     public override void OnInspectorGUI()
     {
         GUIStyle helpBox = new GUIStyle(EditorStyles.helpBox);
-        GUIStyle richText = new GUIStyle(GUI.skin.label);
-        GUIStyle richTextCentered = new GUIStyle(GUI.skin.label);
-        richText.richText = true;
-        richTextCentered.richText = true;
-        richTextCentered.alignment = TextAnchor.UpperCenter;
 
         serializedObject.Update();
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col2)}>----------------- Upgrader -----------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col2, "Upgrader", true);
         EditorGUILayout.Space(1);
 
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col3)}>Options</color></b></size>", richText);
+        InspectorUtils.SectionLabel(ThemeColor.Col3, "Options");
+        EditorGUILayout.BeginVertical(helpBox);
         EditorGUILayout.PropertyField(type);
         EditorGUILayout.PropertyField(upgradeAmount);
-        EditorGUILayout.Space(2);
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.Space(4);
         EditorGUILayout.BeginVertical(helpBox);
-        EditorGUILayout.LabelField($"<size=13><b><color={InspectorUtils.Color(ThemeColor.Col4)}>Other</color></b></size>", richText);
+        InspectorUtils.SectionLabel(ThemeColor.Col4, "Other");
+        EditorGUILayout.BeginVertical(helpBox);
         EditorGUILayout.PropertyField(displayText);
         EditorGUILayout.PropertyField(upgradeParticles);
-        EditorGUILayout.Space(2);
+        EditorGUILayout.EndVertical();
         EditorGUILayout.EndVertical();
 
         serializedObject.ApplyModifiedProperties();

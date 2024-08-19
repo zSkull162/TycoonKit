@@ -26,7 +26,7 @@ public class MoneyManagerEditor : Editor
 
         serializedObject.Update();
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col3)}>----------------- Money Manager -----------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col3, "Money Manager", true);
         EditorGUILayout.Space(1);
 
         EditorGUILayout.BeginVertical(helpBox);

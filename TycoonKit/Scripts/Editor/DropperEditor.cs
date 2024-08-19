@@ -20,16 +20,10 @@ public class DropperEditor : Editor
     public override void OnInspectorGUI()
     {
         GUIStyle helpBox = new GUIStyle(EditorStyles.helpBox);
-        GUIStyle richText = new GUIStyle(GUI.skin.label);
-        GUIStyle richTextCentered = new GUIStyle(GUI.skin.label);
-
-        richText.richText = true;
-        richTextCentered.richText = true;
-        richTextCentered.alignment = TextAnchor.UpperCenter;
 
         serializedObject.Update();
 
-        EditorGUILayout.LabelField($"<size=14><b><color={InspectorUtils.Color(ThemeColor.Col2)}>----------------- Dropper -----------------</color></b></size>", richTextCentered);
+        InspectorUtils.TitleLabel(ThemeColor.Col2, "Dropper", true);
         EditorGUILayout.Space(1);
 
         EditorGUILayout.BeginVertical(helpBox);

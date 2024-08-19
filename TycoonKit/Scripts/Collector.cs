@@ -13,7 +13,7 @@ namespace zSkull162.TycoonKit
         [Tooltip("<b>Required.</b>\nThe udon behaviour for the Money Manager")]
         [SerializeField] private MoneyManager moneyManager;
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             CurrencyTag cTag = other.GetComponent<CurrencyTag>();
             if (cTag == null) { Logger.Log(this.name, "CurrencyTag not found!", LogColor.Red, false); return; }
@@ -32,7 +32,6 @@ namespace zSkull162.TycoonKit
 
         public MoneyManager MoneyManager
         {
-            set { moneyManager = value; }
             get { return moneyManager; }
         }
     }
