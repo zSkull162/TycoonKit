@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wood
-  m_Shader: {fileID: 4800000, guid: cddaa3a02eb956746b502b80b76e92bc, type: 3}
+  m_Shader: {fileID: 4800000, guid: f927f4173320600459911ac97d99d0a2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -249,8 +249,10 @@ Material:
     - _Hue: 0
     - _HueDet: 0
     - _HueEmiss: 0
+    - _HueMode: 0
     - _HuePost: 0
     - _LTCGI: 0
+    - _LTCGIRoughness: 1
     - _LTCGIStrength: 1
     - _LTCGI_DIFFUSE_OFF: 0
     - _LTCGI_SPECULAR_OFF: 0
@@ -274,6 +276,7 @@ Material:
     - _RainToggle: 0
     - _ReflCubeOverrideToggle: 0
     - _ReflCubeToggle: 0
+    - _ReflShadowAreaLit: 1
     - _ReflShadowStrength: 1
     - _ReflShadows: 0
     - _ReflVertexColor: 0
@@ -312,6 +315,8 @@ Material:
     - _Subsurface: 0
     - _ThicknessMapPower: 1
     - _TriplanarFalloff: 1
+    - _TriplanarSpace: 0
+    - _TriplanarSpaceDetail: 0
     - _UV0Rotate: 0
     - _UV1Rotate: 0
     - _UV3Rotate: 0

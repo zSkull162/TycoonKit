@@ -62,7 +62,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 35ba1c19f7fdef74fa6872543a4721ab, type: 2}
-  - {fileID: 2100000, guid: eb8bc3c9183e5e443aa8d070f7757547, type: 2}
+  - {fileID: 2100000, guid: 345e049a602d7c04f826abfb0a1a791b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -374,16 +374,23 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 9100755079362274736}
   moneyManager: {fileID: 0}
-  soundEffect: {fileID: 0}
   containerObject: {fileID: 7729600826959178033}
   titleText: {fileID: 6164984902897998876}
   costText: {fileID: 2890784910096168775}
   unlockName: Sample
   cost: 10
-  globalSound: 1
   unlocks:
   - {fileID: 0}
   previousObject: {fileID: 0}
+  audioSource: {fileID: 0}
+  buySound: {fileID: 8300000, guid: 37471c608ddb3db40ba390fdf7336871, type: 3}
+  isBuySoundGlobal: 1
+  errorSound: {fileID: 0}
+  isErrorSoundGlobal: 0
+  editorOptions: 0
+  isUpgrade: 0
+  useBuySound: 0
+  useErrorSound: 0
 --- !u!114 &9100755079362274736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,16 +474,23 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 6321860952511364872}
   moneyManager: {fileID: 0}
-  soundEffect: {fileID: 0}
   containerObject: {fileID: 4202204400176602203}
   titleText: {fileID: 751017122224652535}
   costText: {fileID: 3584766772394773043}
   unlockName: Sample
   cost: 10
-  globalSound: 1
   unlocks:
   - {fileID: 0}
   previousObject: {fileID: 0}
+  audioSource: {fileID: 0}
+  buySound: {fileID: 8300000, guid: 37471c608ddb3db40ba390fdf7336871, type: 3}
+  isBuySoundGlobal: 1
+  errorSound: {fileID: 0}
+  isErrorSoundGlobal: 0
+  editorOptions: 0
+  isUpgrade: 0
+  useBuySound: 0
+  useErrorSound: 0
 --- !u!114 &6321860952511364872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,16 +1109,23 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 465241551079439212}
   moneyManager: {fileID: 0}
-  soundEffect: {fileID: 0}
   containerObject: {fileID: 2439827956563780587}
   titleText: {fileID: 8973248481125800944}
   costText: {fileID: 4708626120023837124}
   unlockName: Sample
   cost: 10
-  globalSound: 1
   unlocks:
   - {fileID: 0}
   previousObject: {fileID: 0}
+  audioSource: {fileID: 0}
+  buySound: {fileID: 8300000, guid: 37471c608ddb3db40ba390fdf7336871, type: 3}
+  isBuySoundGlobal: 1
+  errorSound: {fileID: 0}
+  isErrorSoundGlobal: 0
+  editorOptions: 0
+  isUpgrade: 0
+  useBuySound: 0
+  useErrorSound: 0
 --- !u!114 &465241551079439212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2121,7 +2142,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 35ba1c19f7fdef74fa6872543a4721ab, type: 2}
-  - {fileID: 2100000, guid: 8a7f8310d48f7e34d82e991b98f770de, type: 2}
+  - {fileID: 2100000, guid: da5c079463dbd4a428878315cc0f86b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

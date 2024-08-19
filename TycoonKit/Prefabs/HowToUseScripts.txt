@@ -73,15 +73,18 @@ The currency objects are done this way, with currency tags, to specifically allo
 
 --- Unlock Button Script ---
 
-The unlock button script will, when a player enters the trigger, check whether you have money equal to or greater than the "Cost" or not. If you do, it will play the "Sound Effect," enable the "Unlocks" gameobjects, and if Is Upgrade is on, disable the "Previous Object" gameobject, and disable the visuals and trigger last.
+The unlock button script will, when a player enters the trigger, check whether you have money equal to or greater than the "Cost" or not. If you do, it will play the "Buy Sound," enable the "Unlocks" gameobjects, and if Is Upgrade is on, disable the "Previous Object" gameobject, and disable the visuals and trigger last. If you don't have enough money, it will play the "Error Sound." (if enabled.)
 
-The Sound Effect and Previous Object fields are not required, so it will work if you don't add anything there. Refer to the Tycoon Example scene to see how the Previous Object field can be used.
+The Previous Object and Audio Source fields are not required, so it will work if you don't add anything there. Refer to the Tycoon Example scene to see how the Previous Object field can be used.
 
-Up at the top, you will see "Editor Options." The editor options include "Set Text," "Reset Text," "Find Money Manager," and "Find Container Object."
+Up at the top, you will see "Editor Options." The editor options include "Set Text," "Reset Text," "Find Money Manager," "Find Container Object," and "Find Audio Source."
 The Set Text and Reset Text buttons simply set the Display's "Title" and "Text" to be the "Unlock Name" and "Cost" in-editor. The text automatically gets set in-game, so don't worry how the text looks in-editor.
 
 The Find Money Manager button searches for any objects in your scene named exactly "MoneyManager", including the capitalization and no space. If that object is found and it has a MoneyManager script attached, it will automatically set the unlock button's Money Manager to the found object.
 The Find Container Object searches for the first child of the object with the UnlockButton script. The default button prefab is a good example of how an unlock button should be set up hierarchy-wise.
+The Find Audio Source button will search the hierarchy for an object in your scene named exactly "ButtonAudio", and if one is found that has an Audiosource component, it will set that object to be the Audio Source.
+
+The "Rename Button" button does what the little description says. It will re-name the button in the hierarchy to be "UnlockName Unlock". This is undo-able, and you can also click "Reset button name" to go back to how it was before you clicked "Rename button."
 
 
 --- Conveyor Script ---
@@ -112,3 +115,7 @@ The Unlock Buttons don't check this themselves, because the trigger has to be di
 This is just like the trigger enter relay script, except it detects when the player clicks the attached collider instead of walks into it.
 
 This was created so you can make an unlock button that players have to click instead of walk on, just to give more freedom with this system.
+
+--- UI Theme Picker ---
+
+This script is cosmetic and editor-only. You can click on the "UI Theme Picker" prefab and select a preset theme or make a custom one, then click its related button, and all of TycoonKit's custom inspectors will have different colors :)

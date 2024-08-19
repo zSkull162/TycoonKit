@@ -290,16 +290,23 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 2494958268582328519}
   moneyManager: {fileID: 0}
-  soundEffect: {fileID: 0}
   containerObject: {fileID: 8564258438282364091}
   titleText: {fileID: 1655879056651357019}
   costText: {fileID: 4974818231169999893}
   unlockName: Sample
   cost: 10
-  globalSound: 1
   unlocks:
   - {fileID: 0}
   previousObject: {fileID: 0}
+  audioSource: {fileID: 0}
+  buySound: {fileID: 0}
+  isBuySoundGlobal: 1
+  errorSound: {fileID: 0}
+  isErrorSoundGlobal: 0
+  editorOptions: 0
+  isUpgrade: 0
+  useBuySound: 0
+  useErrorSound: 0
 --- !u!114 &2494958268582328519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +395,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 35ba1c19f7fdef74fa6872543a4721ab, type: 2}
-  - {fileID: 2100000, guid: eb8bc3c9183e5e443aa8d070f7757547, type: 2}
+  - {fileID: 2100000, guid: 345e049a602d7c04f826abfb0a1a791b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

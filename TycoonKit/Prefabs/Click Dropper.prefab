@@ -146,7 +146,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 35ba1c19f7fdef74fa6872543a4721ab, type: 2}
-  - {fileID: 2100000, guid: 08a8f14e8a78e024b9cb34797855c20b, type: 2}
+  - {fileID: 2100000, guid: b622ebecf75997c4bb13f6ca6b5eb738, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -299,6 +299,7 @@ MonoBehaviour:
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 7990035967980006194}
   spawner: {fileID: 3298314940166498238}
+  cooldown: 0.3
   sound: {fileID: 0}
 --- !u!114 &7990035967980006194
 MonoBehaviour:

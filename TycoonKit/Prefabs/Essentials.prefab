@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 190f2cc12aa8e0040adcee8d1b3d6c5e, type: 2}
+  - {fileID: 2100000, guid: da5c079463dbd4a428878315cc0f86b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,7 +249,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd5878515d753e64fad87f6259e144b2, type: 2}
+  - {fileID: 2100000, guid: c1bca63a556f9604b96bca99dff9101c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -843,7 +843,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8a7f8310d48f7e34d82e991b98f770de, type: 2}
+  - {fileID: 2100000, guid: 345e049a602d7c04f826abfb0a1a791b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1027,7 +1027,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb8bc3c9183e5e443aa8d070f7757547, type: 2}
+  - {fileID: 2100000, guid: 56e165b1aa9b6864a9992ec2c2877b0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1694,7 +1694,7 @@ GameObject:
   - component: {fileID: 6161181717155403177}
   - component: {fileID: 5301701112153890945}
   m_Layer: 0
-  m_Name: BuyAudio
+  m_Name: ButtonAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1725,9 +1725,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 37471c608ddb3db40ba390fdf7336871, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

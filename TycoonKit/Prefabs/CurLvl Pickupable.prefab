@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb8bc3c9183e5e443aa8d070f7757547, type: 2}
+  - {fileID: 2100000, guid: 345e049a602d7c04f826abfb0a1a791b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 2365982090664240220}
-  value: 40
+  objectValue: 0
 --- !u!114 &2365982090664240220
 MonoBehaviour:
   m_ObjectHideFlags: 0
