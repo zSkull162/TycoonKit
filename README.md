@@ -34,30 +34,9 @@ You will also notice there's a particle system slot. It's there so that you can 
 ### 3. Unlock Buttons
 Unlock buttons are the most important part of a tycoon, besides your money. These unlock buttons allow the player to purchase an object in the world, if they have enough money. The money is also synced between players, therefore somewhat shared, but more on that in the Money Manager section.
 
-The main part of the unlock button is the <b>Unlock Name, Cost, Unlocks, and Is Upgrade</b>. The Unlock Name will display as a title above the cost, and will have a colon automatically added to the end of the string. The Cost is displayed below the Unlock Name, and will have a <b>$</b> automatically added to the beginning of the number.
+These unlock buttons have a few too many features to explain here, but I can assure that they have everything you'll need. There's a full explanation in the "How to Use Scripts" text file, which is at "- zSkull162/TycoonKit/Prefabs"
 
-![Screenshot 2024-07-10 182155](https://github.com/zSkull162/TycoonKit/assets/70001936/d224e298-5d80-4682-b5b8-1fe90d84dc3a) ![Screenshot 2024-07-10 182205](https://github.com/zSkull162/TycoonKit/assets/70001936/e299ff7d-7e2d-49e5-978b-23828f9e65b5)
-
-
-The Sound Effect is an Audiosource field, and it will play when a button is purchased. By default, the sound plays for every player, but there's a toggle to make it only play locally, as you may notice with the "Global Sound" checkbox.
-The Sound Effect is also not required, so leave it blank if you don't want any sound at all.
-
-The Unlocks is a Gameobject array, and these objects you add to the array will be what gets <b>enabled</b> when the button is purchased. These unlocks will be synced for in-instance players and late-joiners.
-
-The "Is Upgrade" option shows you a Previous Object variable. This is also a Gameobject, and it gets <b>disabled</b> when the button is purchased. The main use for this is if you want to upgrade something. For example:
-You have a dropper that's level 1, and you have a level 2 version set up that drops better currency. For an upgrade button, you would add the dropper level 2 to the unlocks, enable "Is Upgrade", and put the dropper level 1 in the Previous Object. This way, the new dropper will show up, and the old one will disappear.
-
-One very important thing to note, is that; If you want a button to be off by default, you <b>must</b> disable the "Container Object" part of the button, and <b>not</b> the part with the Unlock Button script attatched.
-The reasoning for this, is that if you toggle the main part of the button with the script attatched, the script will disable along with the button, and disabled scripts cannot sync any data.
-This also means if you want a button that unlocks other buttons, you need to add the Container Object to the unlocks, and not the part with the script.
-
-You will also notice the "Editor Options" dropdown at the top of the script. These "Set text" buttons are simply there to let you preview what the button will look like in-game. If you press them, it will update the Unlock Name and Cost text to show whatever you added to the respective fields.
-The text is automatically set in-game aswell, so don't worry about how it looks in-editor.
-
-There are also some buttons to "Find Money Manager" and "Find Container Object." These do exactly what they say, and find/set the money manager and container object for you. As you can see, there's also a short explanation on the inspector itself.
-These buttons are just for convenience :)
-
-![Screenshot 2024-07-21 214917](https://github.com/user-attachments/assets/98316569-5782-446f-9770-38aa866fa406) ![Screenshot 2024-07-21 214934](https://github.com/user-attachments/assets/863a7423-9667-4713-a42e-7f6ab84ba158)
+![Screenshot 2024-08-22 150433](https://github.com/user-attachments/assets/a41c8224-7763-4a63-9767-59f7812c5fed)
 
 
 ### 4. Money Manager
