@@ -1,0 +1,14 @@
+--- zSkull162 TycoonKit Instructions ---
+
+1. Drag the Essentials prefab into the scene
+
+2. Drag any of the other prefabs in after
+
+3. Make sure to check the script of any prefab after you drag them in, and set up the Money Manager, or Audio Source reference if needed.
+
+Unless specified, some references aren't required. For example, you don't have to add an audiosource to the buttons, if you don't want a sound to play, and you don't have to add text components either, if you don't want it to display the name or cost.
+
+Everything is also networked, for in-instance and late-joiners. Technically the droppers and currency objects aren't synced, but they'll be dropping at roughly the same time for everyone anyway, so you shouldn't notice.
+
+Everything should magically work, as long as no references are missing.
+In case you need help, message me on discord: skull_z162
