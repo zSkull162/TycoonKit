@@ -56,7 +56,7 @@ The Display Text field is also not <i>required</i>, but it wouldn't be that fun 
 ### 5. Currency Objects
 The final building block to making a roblox-like tycoon game, the currency objects. These are the objects that will roll on conveyors, and be collected by collectors.
 
-To create a currency object is very simple. Get a primitive like a sphere, cube, or get/make a 3D model, whatever. Then you add a Sphere collider to it, and a Rigidbody. While it might not make sense for something like a cube to have a sphere collider, sphere colliders work best as they roll the easiest under the force of a conveyor.
+To create a currency object is very simple. Get a primitive like a sphere, cube, or get/make a 3D model, whatever. Then add a collider to it, and a Rigidbody. If you're using a box collider for your model, I would reccommend giving the collider the "NoFriction" physics material so that it slides on the conveyor instead of rolls. (This physics material is found in "- zSkull162/TycoonKit")
 (I also reccommend you put the obect onto the Pickup or Walkthrough layers, so that players can't interact with them and get spun around.)
 
 ![Screenshot 2024-03-18 213315](https://github.com/zSkull162/TycoonKit/assets/70001936/8ff5ee95-9b9d-4512-aa04-aa864b0b36b7)
