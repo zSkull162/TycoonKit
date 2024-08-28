@@ -67,6 +67,10 @@ Finally, you add the Currency Tag script. This is the component that stores a Va
 ![Screenshot 2024-07-10 182250](https://github.com/zSkull162/TycoonKit/assets/70001936/af0385f6-9af9-4b88-aba7-0f3b932e5e15)
 
 
+### 6. SimpleHUD
+This tycoon system also includes a version of [SimpleHUD](https://github.com/zSkull162/SimpleHUD/tree/main), a HUD system made by me. If you want to use this HUD system by itself, it can be downloaded by clicking the previous blue text, or from here: https://github.com/zSkull162/SimpleHUD/tree/main
+
+
 ### ---------------------------------------------------------------------------------------------
 ## That's all for this ReadMe.
 There's more features in the prefab that weren't mentioned fully here of course, like the Object Cleanup script, or Conveyors, but this isn't the end of the documentation. Within the unitypackage, there's 3 more text files with even more information.
