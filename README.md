@@ -10,8 +10,8 @@ This system is the same one found in [my own world, Polytycoon!](https://vrchat.
 The unitypackage includes Mochie's standard shader, as i used it for the materials the prefabs and example scenes use. If you already have Mochie's shaders installed, the unitypackage won't install a second copy.
 
 ## Important:
-This package was made on <b>Unity 2022.3.6</b>, so if you are trying to use it on <b>Unity 2019.4.31</b>, you will have some minor issues.
-When I attempted to use this package in Unity 2019, everything does work, but there's some collider scaling issues for the prefabs. To fix this, simply go through each prefab, and make sure none of the colliders are massive or super small. Otherwise, this package works fine on Unity 2019. This system should also work for Unity 2022.3.22, but I haven't tested that yet.
+This package was made on <b>Unity 2022.3.6</b>, so if you are trying to use it on <b>Unity 2019.4.31</b>, you will have some minor issues and (fixable) errors.
+When I attempted to use this package in Unity 2019, everything does work, but there's some collider scaling issues for the prefabs. To fix this, simply go through each prefab, and make sure none of the colliders are massive or super small. Also, there will be a few errors related to "FindObjectsByType." This can be fixed by double clicking the errors and changing "GameObject.FindObjectsByType<GameObjects>(FindObjectsSortMode.None);" to "GameObject.FindObjectsOfType<GameObject>();". For me, there was also an issue about something "Home." Double click that error aswell, and delete that whole "using X" line that includes the error. Otherwise, this package works fine on Unity 2019. This system should also work for Unity 2022.3.22, but I haven't tested that yet.
 
 ### ---------------------------------------------------------------------------------------------
 # Features
